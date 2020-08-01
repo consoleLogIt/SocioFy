@@ -5,13 +5,13 @@ const postSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    user:{
+    user:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
-    }   
+        ref:'User'
+    }]   
 },
     {
-timestamps:true
+timestamps:true,
     }
 
 )

@@ -5,9 +5,25 @@
     <h2><%=user.email%></h2>
 
     <section id="feed-posts">
-<form action="" id = "new-post-form" method="POST">
+<form action="/post/create" id = "new-post-form" method="POST">
     <textarea name ="content" cols="30" rows = "3" placeholder="type here...."></textarea>
     <input type="submit" value="Post">
 </form>
     </section>
+
+    <div id ="post-list-container">
+
+        <ul>
+            <% for(post of posts) {%>
+              
+              <li>
+                  <%= post.content%>
+                  <%= post.user%>
+
+              </li>
+            <% } %>
+        </ul>
+
+
+    </div>
 
