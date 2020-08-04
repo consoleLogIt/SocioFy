@@ -6,7 +6,7 @@
 
     <section id="feed-posts">
 <form action="/post/create" id = "new-post-form" method="POST">
-    <textarea name ="content" cols="30" rows = "3" placeholder="type here...."></textarea>
+    <textarea name ="content" cols="30" rows = "3" placeholder="type here...." required></textarea>
     <input type="submit" value="Post">
 </form>
     </section>
@@ -17,8 +17,36 @@
             <% for(post of posts) {%>
               
               <li>
+                  <p>
                   <%= post.content%>
-                  <%= post.user%>
+                  <br>
+                  <%= post.user.name%>
+                  </p>
+
+                  <form action="/comment/create" method="POST" >
+                      <input type="text" placeholder="add comments" name = "content" required>
+                      <input type="hidden" name="post" value="<%= post._id %>">
+                      <input type="submit" value="comment">
+                  </form>
+
+                  <div class="post-comment-list" >
+                  <ul id= "post-comment-<%=post.id%>">
+                      <% for(comment of post.comments){ %>
+                     
+                        <p>
+                            <li><%=comment.content%></li>
+                            <br>
+                            <small><%= comment.user.email %></small>
+                        </p>
+
+                      <% } %>
+
+                  </ul> 
+
+
+                  </div>
+
+                  
 
               </li>
             <% } %>

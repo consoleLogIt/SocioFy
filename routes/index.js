@@ -10,5 +10,7 @@ router.post('/create',homeController.create_user);
 router.get('/sign-out',homeController.sign_out);
 router.use('/users', require('./users'));
 router.use('/post',require('./post'));
+router.use('/comment',require('./comments'));
+
 
 module.exports = router;

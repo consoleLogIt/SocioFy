@@ -5,16 +5,22 @@ const postSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    user:[{
+    user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
-    }]   
+    },
+    comments:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Comment'
+    }] 
 },
-    {
+// include the array of ids of all comments in this post schema itself
+ 
+{
 timestamps:true,
     }
 
 )
 
-const Posts = mongoose.model('Posts',postSchema);
-module.exports = Posts;
+const Post = mongoose.model('Post',postSchema);
+module.exports = Post;
