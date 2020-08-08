@@ -1,64 +1,24 @@
-
 <link rel="stylesheet" href="/css/user_profile.css">
-    <h2>Profile Page</h2>
-    <h2><%=user.name%></h2>
-    <h2><%=user.email%></h2>
-
-    <section id="feed-posts">
-<form action="/post/create" id = "new-post-form" method="POST">
-    <textarea name ="content" cols="30" rows = "3" placeholder="type here...." required></textarea>
-    <input type="submit" value="Post">
-</form>
-    </section>
-
-    <div id ="post-list-container">
-
-        <ul>
-            <% for(post of posts) {%>
-              
-              <li>
-                  <p>
-                        <% if(locals.user && locals .user.id == post.user.id){%>
-                            <small><a href="/post/destroy/<%=post.id%>">delete</a></small>
-                           <% } %>
-                  <%= post.content%>
-                  <br>
-                  <%= post.user.name%>
-                  </p>
-
-                  <form action="/comment/create" method="POST" >
-                      <input type="text" placeholder="add comments" name = "content" required>
-                      <input type="hidden" name="post" value="<%= post._id %>">
-                      <input type="submit" value="comment">
-                  </form>
-
-                  <div class="post-comment-list" >
-                  <ul id= "post-comment-<%=post.id%>">
-                      <% for(comment of post.comments){ %>
-                     
-                        <p>
-                                <% if(locals.user && locals.user.id == comment.user.id){%>
-                                    <small><a href="/comment/destroy/<%=comment.id%>">delete</a></small>
-                                   <% } %>
-                           
-                            <li><%=comment.content%></li>
-                            <br>
-                            <small><%= comment.user.email %></small>
-                        </p>
-
-                      <% } %>
-
-                  </ul> 
+<h2>Profile Page</h2>
 
 
-                  </div>
 
-                  
+<% if(locals.user.id == profile_user.id){%>
+    <form action="/users/update/<%= profile_user.id %>" method="POST">
+    
+        <input type="text" name="name" placeholder="your name" value="<%= profile_user.name %>" required>
+        <input type="email" name="email" placeholder="your email" value="<%= profile_user.email %>" required>
+        <input type="submit" value="update">
 
-              </li>
-            <% } %>
-        </ul>
+    
+    
+    </form>
 
+<% }
 
-    </div>
+else{%>
 
+    <h2><%=profile_user.name%></h2>
+<h2><%=profile_user.email%></h2>
+
+<% } %>

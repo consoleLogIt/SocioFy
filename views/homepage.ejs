@@ -1,0 +1,43 @@
+
+<h2>Profile Page</h2>
+<h2><%=user.name%></h2>
+<h2><%=user.email%></h2>
+
+<section id="feed-posts">
+<form action="/post/create" id = "new-post-form" method="POST">
+<textarea name ="content" cols="30" rows = "3" placeholder="type here...." required></textarea>
+<input type="submit" value="Post">
+</form>
+</section>
+
+<div id ="post-list-container">
+
+    <ul>
+        <% for(post of posts) {%>
+
+            <%- include('_post') -%>
+          
+        
+        <% } %>
+    </ul>
+
+
+</div>
+
+<section id="user-friends">
+    <h4>Friends</h4>
+
+    <% for(u of all_users) {%>
+  
+        <p>
+ 
+            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+
+        </p>
+
+
+   <% } %>
+    
+
+</section>
+

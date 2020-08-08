@@ -4,7 +4,7 @@ const passport  = require('passport');
 module.exports.login = function(req,res){
     // console.log(req.cookies);
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
+        return res.redirect('/users/homepage');
     }
     return res.render('login_page.ejs',{layout:false});
 }
@@ -51,10 +51,12 @@ else{
 
 
 module.exports.create_session = function(req,res){
-    return res.redirect('/users/profile');
+    return res.redirect('/users/homepage');
 }
 
 module.exports.sign_out = function(req,res){
     req.logout();
     return res.redirect('/');
 }
+
+
